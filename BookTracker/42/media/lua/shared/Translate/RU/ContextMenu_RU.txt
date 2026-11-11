@@ -1,0 +1,4 @@
+ContextMenu_RU = {
+    ContextMenu_BT_Scan = "Запомнить книги/журналы",
+    ContextMenu_BT_Reset = "Сбросить список книг",
+}
