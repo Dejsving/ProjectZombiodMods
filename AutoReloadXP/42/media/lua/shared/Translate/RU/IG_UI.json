@@ -1,0 +1,8 @@
+{
+  "IGUI_AutoReloadXP_NoSuitableWeapon": "Авто: нет подходящего оружия, магазина или патронов",
+  "IGUI_AutoReloadXP_ActionInterrupted": "Авто: действие прервано или предмет недоступен",
+  "IGUI_AutoReloadXP_ItemUnavailable": "Авто: оружие или магазин недоступны",
+  "IGUI_AutoReloadXP_NoAmmo": "Авто: патроны закончились",
+  "IGUI_AutoReloadXP_Off": "Авто: ВЫКЛ",
+  "IGUI_AutoReloadXP_On": "Авто: ВКЛ"
+}

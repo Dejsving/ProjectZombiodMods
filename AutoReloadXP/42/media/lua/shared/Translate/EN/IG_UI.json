@@ -1,0 +1,8 @@
+{
+  "IGUI_AutoReloadXP_NoSuitableWeapon": "Auto reload: no suitable weapon, magazine or ammunition",
+  "IGUI_AutoReloadXP_ActionInterrupted": "Auto reload: action interrupted or item unavailable",
+  "IGUI_AutoReloadXP_ItemUnavailable": "Auto reload: weapon or magazine unavailable",
+  "IGUI_AutoReloadXP_NoAmmo": "Auto reload: out of ammunition",
+  "IGUI_AutoReloadXP_Off": "Auto reload: OFF",
+  "IGUI_AutoReloadXP_On": "Auto reload: ON"
+}
