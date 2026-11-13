@@ -21,7 +21,17 @@ local function listSize(list)
 end
 
 local function isTracked(item)
-    if not item or not instanceof(item, "Literature") then return false end
+    if not item then return false end
+    if item.isRecordedMedia and item:isRecordedMedia() then return true end
+    if not instanceof(item, "Literature") then return false end
+
+    local itemType = item:getType()
+    if itemType == "Book" or itemType == "Paperback"
+        or string.sub(itemType, 1, 5) == "Book_"
+        or string.sub(itemType, 1, 10) == "Paperback_" then
+        return true
+    end
+
     -- book on a skill
     if item.getSkillTrained then
         local skill = item:getSkillTrained()
@@ -31,6 +41,23 @@ local function isTracked(item)
     if item.getLearnedRecipes and listSize(item:getLearnedRecipes()) > 0 then return true end
     if item.getTeachedRecipes and listSize(item:getTeachedRecipes()) > 0 then return true end
     return false
+end
+
+-- Возвращает ключ предмета, отдельно учитывая каждую запись на VHS и CD.
+local function getTrackingKey(item)
+    local fullType = item:getFullType()
+    if not item.isRecordedMedia or not item:isRecordedMedia() then return fullType end
+
+    local mediaData = item:getMediaData()
+    if not mediaData then return fullType end
+    if mediaData.getId then
+        local mediaId = mediaData:getId()
+        if mediaId ~= nil then return fullType .. ":" .. tostring(mediaId) end
+    end
+
+    return fullType .. ":" .. tostring(mediaData:getTitleEN() or "")
+        .. ":" .. tostring(mediaData:getSubtitleEN() or "")
+        .. ":" .. tostring(mediaData:getAuthorEN() or "")
 end
 
 local function getData(playerObj)
@@ -51,8 +78,9 @@ local function scanContainer(playerObj, playerNum, container)
     local added = 0
     for i = 0, items:size() - 1 do
         local it = items:get(i)
-        if isTracked(it) and not md.BT_owned[it:getFullType()] then
-            md.BT_owned[it:getFullType()] = true
+        local key = isTracked(it) and getTrackingKey(it) or nil
+        if key and not md.BT_owned[key] then
+            md.BT_owned[key] = true
             added = added + 1
         end
     end
@@ -67,7 +95,7 @@ local function resetList(playerObj, playerNum)
     local md = getData(playerObj)
     md.BT_owned = {}
     md.BT_init = false
-    playerObj:Say(tr("IGUI_BT_Reset", "Book list reset"))
+    playerObj:Say(tr("IGUI_BT_Reset", "Tracked item list reset"))
     refreshUI(playerNum)
 end
 
@@ -77,7 +105,7 @@ Events.OnFillWorldObjectContextMenu.Add(function(playerNum, context, worldObject
         if obj.getContainerCount and obj:getContainerCount() > 0 then
             for i = 0, obj:getContainerCount() - 1 do
                 local c = obj:getContainerByIndex(i)
-                context:addOption(tr("ContextMenu_BT_Scan", "Remember books/magazines"), playerObj, scanContainer, playerNum, c)
+                context:addOption(tr("ContextMenu_BT_Scan", "Remember books, magazines and media"), playerObj, scanContainer, playerNum, c)
             end
             context:addOption(tr("ContextMenu_BT_Reset", "Reset book list"), playerObj, resetList, playerNum)
             break
@@ -103,7 +131,7 @@ local function updateMarks(pane)
         if isTracked(it) then
             local name = it:getName()
             local marked = string.sub(name, 1, #PREFIX) == PREFIX
-            local need = (not own) and (not md.BT_owned[it:getFullType()])
+            local need = (not own) and (not md.BT_owned[getTrackingKey(it)])
             if need and not marked then
                 it:setName(PREFIX .. name)
                 pcall(function() it:setCustomName(true) end)
