@@ -1,0 +1,4 @@
+name=Loot Tracker
+id=LootTracker
+description=Запоминает литературу, VHS-кассеты, CD-диски и инструменты из ваших ящиков и помечает в луте те, которых у вас ещё нет.
+versionMin=42.0.0
