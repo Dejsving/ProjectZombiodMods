@@ -1,5 +1,8 @@
 -- Loot Tracker
 
+if LT_initialized then return end
+LT_initialized = true
+
 local PREFIX = "[!!] "
 local TOOL_CATEGORIES = {
     Tool = true,
@@ -154,10 +157,8 @@ Events.OnFillWorldObjectContextMenu.Add(function(playerNum, context, worldObject
     local playerObj = getSpecificPlayer(playerNum)
     for _, obj in ipairs(worldObjects) do
         if obj.getContainerCount and obj:getContainerCount() > 0 then
-            for i = 0, obj:getContainerCount() - 1 do
-                local c = obj:getContainerByIndex(i)
-                context:addOption(tr("ContextMenu_BT_Scan", "Remember literature, media and tools"), playerObj, scanContainer, playerNum, c)
-            end
+            local c = obj:getContainerByIndex(0)
+            context:addOption(tr("ContextMenu_BT_Scan", "Remember literature, media and tools"), playerObj, scanContainer, playerNum, c)
             context:addOption(tr("ContextMenu_BT_Reset", "Reset tracked items"), playerObj, resetList, playerNum)
             break
         end
