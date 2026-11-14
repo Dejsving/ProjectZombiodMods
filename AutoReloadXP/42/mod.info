@@ -1,3 +1,7 @@
 name=AutoReloadXP
 id=AutoReloadXP
-description=Automatically trains Reloading with firearms and compatible ammunition
+description=Automatically trains Reloading  recharge through charging/discharging a suitable clip or weapon.
+author=Dejsving
+pzversion=42
+modversion=1.0.0
+versionMin=42.0

@@ -1,4 +1,7 @@
 name=Loot Tracker
-id=LootTracker
-description=Запоминает литературу, VHS-кассеты, CD-диски и инструменты из ваших ящиков и помечает в луте те, которых у вас ещё нет.
-versionMin=42.0.0
+id=PropaneRefuel
+description=Remembers literature, VHS tapes, CDs, and instruments from your drawers and marks the ones you don't have yet in the loot.
+author=Dejsving
+pzversion=42
+modversion=1.0.0
+versionMin=42.0
