@@ -1,3 +1,2 @@
-Loot Tracker запоминает литературу, VHS-кассеты, CD-диски и инструменты из контейнеров, чтобы отмечать еще не найденные предметы.
-
-Каталог common требуется для структуры мода Project Zomboid Build 42.
+readme_EN — for an English-speaking user
+readme_RU — для рускоговорящего пользователя
