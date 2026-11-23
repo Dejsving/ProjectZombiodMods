@@ -1,0 +1,44 @@
+module AlembicDistilling
+{
+    craftRecipe MakeCopperPortableAlembic
+    {
+        timedAction = Making,
+        time = 150,
+        Tags = InHandCraft;Cooking;CanBeDoneInDark,
+        category = Miscellaneous,
+        xpAward = Maintenance:3,
+        inputs
+        {
+            item 1 [Base.Kettle;Base.Kettle_Copper],
+            item 1 [Base.RubberHose],
+            item 1 [Base.MetalPipe],
+            item 1 [Base.Funnel],
+            item 1 tags[base:pliers;base:wrench] mode:keep flags[MayDegradeLight],
+            item 1 tags[base:screwdriver] mode:keep flags[MayDegradeLight],
+        }
+        outputs
+        {
+            item 1 [AlembicDistilling.Alembic_CopperPortable],
+        }
+    }
+
+    craftRecipe DistillInCopperPortableAlembic
+    {
+        timedAction = Making,
+        time = 300,
+        AllowBatchCraft = false,
+        Tags = InHandCraft;Cooking;CanBeDoneInDark,
+        category = Cooking,
+        OnTest = RecipeCodeOnTest.alembicDistill,
+        OnCreate = RecipeCodeOnCreate.alembicDistill,
+        Tooltip = Tooltip_AlembicDistilling_Distill,
+        xpAward = Cooking:3,
+        inputs
+        {
+            item 1 [AlembicDistilling.Alembic_CopperPortable] mode:keep flags[ItemIsFluid;NotEmpty],
+        }
+        outputs
+        {
+        }
+    }
+}

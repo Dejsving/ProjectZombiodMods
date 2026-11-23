@@ -1,0 +1,26 @@
+module AlembicDistilling
+{
+    item Alembic_CopperPortable
+    {
+        DisplayCategory = Cooking,
+        ItemType = base:normal,
+        PourType = Kettle,
+        Weight = 2.8,
+        Icon = CopperKettle,
+        MetalValue = 70.0,
+        StaticModel = Kettle_Copper,
+        WorldStaticModel = Kettle_Copper,
+        FillFromDispenserSound = GetWaterFromDispenserMetalMedium,
+        FillFromLakeSound = GetWaterFromLakeSmall,
+        FillFromTapSound = GetWaterFromTapMetalMedium,
+        FillFromToiletSound = GetWaterFromToilet,
+        IsCookable = true,
+        Tags = base:cookable;base:hasmetal,
+        component FluidContainer
+        {
+            ContainerName = Kettle_Copper,
+            Capacity = 1.5,
+            TransferRate = 1.0,
+        }
+    }
+}
