@@ -21,7 +21,8 @@ local allowedAlcohol = {
 local efficiency = 0.75
 local targetAlcohol = 0.40
 local minimumHeat = 1.6
-local alembicType = "AlembicDistilling.Alembic_CopperPortable"
+local minimumBatchAmount = 0.1
+local alembicType = "AlembicDistilling.Alembic_Portable"
 
 --- Возвращает пригодность перегоняемой жидкости по типу и чистоте.
 local function getAllowedFluid(container)
@@ -37,13 +38,21 @@ local function getAllowedFluid(container)
     return fluid
 end
 
+--- Возвращает true, если объём жидкости достаточен для перегонки.
+local function hasMinimumBatchAmount(container)
+    return container and container:getAmount() >= minimumBatchAmount
+end
+
 --- Проверяет, можно ли перегнать содержимое выбранного нагретого аламбика.
 function RecipeCodeOnTest.alembicDistill(item, character)
     if not item or item:getFullType() ~= alembicType then
         return true
     end
 
-    return item:getItemHeat() > minimumHeat and getAllowedFluid(item:getFluidContainer()) ~= nil
+    local container = item:getFluidContainer()
+    return item:getItemHeat() > minimumHeat
+        and hasMinimumBatchAmount(container)
+        and getAllowedFluid(container) ~= nil
 end
 
 --- Заменяет содержимое аламбика рассчитанным объёмом водки крепостью 40%.
@@ -60,7 +69,7 @@ function RecipeCodeOnCreate.alembicDistill(recipeData, character)
 
     local container = alembic:getFluidContainer()
     local sourceFluid = getAllowedFluid(container)
-    if not sourceFluid then
+    if not sourceFluid or not hasMinimumBatchAmount(container) then
         return
     end
 

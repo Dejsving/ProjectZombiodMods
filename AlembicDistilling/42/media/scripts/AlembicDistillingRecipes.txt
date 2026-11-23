@@ -18,7 +18,7 @@ module AlembicDistilling
         }
         outputs
         {
-            item 1 [AlembicDistilling.Alembic_CopperPortable],
+            item 1 AlembicDistilling.Alembic_Portable,
         }
     }
 
@@ -35,7 +35,7 @@ module AlembicDistilling
         xpAward = Cooking:3,
         inputs
         {
-            item 1 [AlembicDistilling.Alembic_CopperPortable] mode:keep flags[ItemIsFluid;NotEmpty],
+            item 1 [AlembicDistilling.Alembic_Portable] mode:keep flags[ItemIsFluid;NotEmpty],
         }
         outputs
         {

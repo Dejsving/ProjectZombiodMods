@@ -41,7 +41,7 @@
 
 ## 1. Сборка переносного аламбика
 
-Рабочее название результата: `Alembic_CopperPortable`.
+Рабочее название результата: `Alembic_Portable`.
 
 ### Материалы
 
@@ -61,7 +61,7 @@
 
 ### Результат
 
-- новый переносимый предмет `Alembic_CopperPortable`;
+- новый переносимый предмет `Alembic_Portable`;
 - вес приблизительно равен сумме исходных деталей;
 - первая версия использует `Icon = CopperKettle`, `StaticModel = Kettle_Copper`, `WorldStaticModel = Kettle_Copper`;
 - уникальный предмет получает собственный DisplayName/локализацию.
