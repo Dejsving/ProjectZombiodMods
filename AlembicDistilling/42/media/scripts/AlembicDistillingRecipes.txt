@@ -32,7 +32,6 @@ module AlembicDistilling
         OnTest = RecipeCodeOnTest.alembicDistill,
         OnCreate = RecipeCodeOnCreate.alembicDistill,
         Tooltip = Tooltip_AlembicDistilling_Distill,
-        xpAward = Cooking:3,
         inputs
         {
             item 1 [AlembicDistilling.Alembic_Portable] mode:keep flags[ItemIsFluid;NotEmpty],

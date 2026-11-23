@@ -18,10 +18,11 @@ local allowedAlcohol = {
     Wine = true,
 }
 
-local efficiency = 0.75
+local baseEfficiency = 0.70
 local targetAlcohol = 0.40
 local minimumHeat = 1.6
 local minimumBatchAmount = 0.1
+local cookingXpPerLitre = 2
 local alembicType = "AlembicDistilling.Alembic_Portable"
 
 --- Возвращает пригодность перегоняемой жидкости по типу и чистоте.
@@ -43,6 +44,21 @@ local function hasMinimumBatchAmount(container)
     return container and container:getAmount() >= minimumBatchAmount
 end
 
+--- Рассчитывает коэффициент перегонки по уровню навыка Cooking персонажа.
+local function getDistillationEfficiency(character)
+    if not character then
+        return baseEfficiency
+    end
+
+    local cookingLevel = math.max(0, math.min(10, character:getPerkLevel(Perks.Cooking)))
+    return baseEfficiency + cookingLevel / 100
+end
+
+--- Рассчитывает награду Cooking за объём сырья с округлением до двух знаков.
+local function getCookingXp(sourceAmount)
+    return math.floor(sourceAmount * cookingXpPerLitre * 100 + 0.5) / 100
+end
+
 --- Проверяет, можно ли перегнать содержимое выбранного нагретого аламбика.
 function RecipeCodeOnTest.alembicDistill(item, character)
     if not item or item:getFullType() ~= alembicType then
@@ -55,7 +71,7 @@ function RecipeCodeOnTest.alembicDistill(item, character)
         and getAllowedFluid(container) ~= nil
 end
 
---- Заменяет содержимое аламбика рассчитанным объёмом водки крепостью 40%.
+--- Заменяет содержимое аламбика водкой 40% и начисляет XP Cooking за объём сырья.
 function RecipeCodeOnCreate.alembicDistill(recipeData, character)
     local items = recipeData:getAllKeepInputItems()
     if not items or items:size() == 0 then
@@ -75,9 +91,11 @@ function RecipeCodeOnCreate.alembicDistill(recipeData, character)
 
     local sourceAmount = container:getAmount()
     local alcoholStrength = sourceFluid:getProperties():getAlcohol()
+    local efficiency = getDistillationEfficiency(character)
     local vodkaAmount = sourceAmount * alcoholStrength * efficiency / targetAlcohol
 
     container:Empty()
     container:addFluid(Fluid.Get("Vodka"), vodkaAmount)
     alembic:sendSyncEntity(nil)
+    addXp(character, Perks.Cooking, getCookingXp(sourceAmount))
 end
