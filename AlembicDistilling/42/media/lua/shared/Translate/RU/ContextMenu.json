@@ -1,0 +1,12 @@
+{
+    "ContextMenu_AlembicDistilling_Debug": "Alembic Distilling (отладка)",
+    "ContextMenu_AlembicDistilling_Debug_TestKit": "Выдать тестовый набор",
+    "ContextMenu_AlembicDistilling_Debug_Firewood": "Выдать дрова ×10",
+    "ContextMenu_AlembicDistilling_Debug_Lighter": "Выдать зажигалку ×1",
+    "ContextMenu_AlembicDistilling_Debug_Splinters": "Выдать щепки ×1",
+    "ContextMenu_AlembicDistilling_Debug_PortableKit": "Выдать комплект переносного аппарата",
+    "ContextMenu_AlembicDistilling_Debug_StationaryKit": "Выдать комплект стационарного аппарата",
+    "ContextMenu_AlembicDistilling_Debug_Hammer": "Выдать молоток ×1",
+    "ContextMenu_AlembicDistilling_Debug_Buckets": "Выдать пустые вёдра ×3",
+    "ContextMenu_AlembicDistilling_Liquid": "Жидкость"
+}

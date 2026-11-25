@@ -1,3 +1,5 @@
 {
-    "AlembicDistilling.Alembic_Portable": "Переносной перегонный аппарат"
+    "AlembicDistilling.Alembic_Portable": "Переносной перегонный аппарат",
+    "AlembicDistilling.Alembic_Stationary_Bucket": "Стационарный перегонный аппарат",
+    "Alembic_Stationary_Bucket": "Стационарный перегонный аппарат"
 }

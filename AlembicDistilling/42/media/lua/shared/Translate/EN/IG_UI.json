@@ -1,3 +1,10 @@
 {
-    "Tooltip_AlembicDistilling_Distill": "The apparatus must be very hot and contain at least 500 ml of one supported alcoholic drink. The resulting 40% vodka remains in the apparatus. Yield depends on Cooking level; Cooking XP is awarded for the amount distilled."
+    "Tooltip_AlembicDistilling_Distill": "The apparatus must be very hot and contain at least 100 ml of one supported alcoholic drink. The resulting 40% vodka remains in the apparatus. Yield depends on Cooking level; Cooking XP is awarded for the amount distilled.",
+    "Tooltip_AlembicDistilling_StationaryBuild": "A stationary fire-heated distillery with a 10 litre working tank. Fuel and alcohol are loaded through separate interfaces.",
+    "IGUI_AlembicDistilling_StationaryName": "Stationary Bucket Distillery",
+    "IGUI_AlembicDistilling_Start": "Start Distillation",
+    "IGUI_AlembicDistilling_Distilling": "Distilling",
+    "IGUI_AlembicDistilling_Fuel": "Fuel",
+    "IGUI_AlembicDistilling_FuelAmount": "Fuel amount: %1 (%2)",
+    "IGUI_AlembicDistilling_StationaryRequirements": "Light the firebox, add fuel for at least 30 minutes, fill the 10 litre tank with at least 100 ml of a supported pure alcohol, and select a receiver with enough free space."
 }

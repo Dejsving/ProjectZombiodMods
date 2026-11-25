@@ -1,4 +1,7 @@
 {
     "MakeCopperPortableAlembic": "Собрать переносной перегонный аппарат",
-    "DistillInCopperPortableAlembic": "Перегнать в переносном перегонном аппарате"
+    "DistillInCopperPortableAlembic": "Перегнать в переносном перегонном аппарате",
+    "AlembicDistilling.Alembic_Stationary_Bucket": "Построить стационарный перегонный аппарат",
+    "Alembic_Stationary_Bucket": "Стационарный перегонный аппарат",
+    "MakeStationaryBucketAlembic": "Собрать стационарный перегонный аппарат"
 }

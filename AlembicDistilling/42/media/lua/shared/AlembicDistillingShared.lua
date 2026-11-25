@@ -22,8 +22,17 @@ local baseEfficiency = 0.70
 local targetAlcohol = 0.40
 local minimumHeat = 1.6
 local minimumBatchAmount = 0.1
+local minimumStationFuel = 30
 local cookingXpPerLitre = 2
 local alembicType = "AlembicDistilling.Alembic_Portable"
+local stationarySprites = {
+    alembic_tier3_0 = true,
+    alembic_tier3_1 = true,
+    alembic_tier3_2 = true,
+    alembic_tier3_3 = true,
+}
+
+AlembicDistilling = AlembicDistilling or {}
 
 --- Возвращает пригодность перегоняемой жидкости по типу и чистоте.
 local function getAllowedFluid(container)
@@ -59,6 +68,84 @@ local function getCookingXp(sourceAmount)
     return math.floor(sourceAmount * cookingXpPerLitre * 100 + 0.5) / 100
 end
 
+--- Рассчитывает выход водки 40% из содержимого перегонного аппарата.
+function AlembicDistilling.getVodkaAmount(container, character)
+    local fluid = getAllowedFluid(container)
+    if not fluid or not hasMinimumBatchAmount(container) then
+        return 0
+    end
+
+    local alcoholStrength = fluid:getProperties():getAlcohol()
+    return container:getAmount() * alcoholStrength * getDistillationEfficiency(character) / targetAlcohol
+end
+
+--- Возвращает true, если контейнер установленного предмета принадлежит стационарному кубу.
+function AlembicDistilling.isStationaryDistillery(object)
+    if not object or not instanceof(object, "IsoFireplace") then
+        return false
+    end
+
+    local fluidContainer = object:getFluidContainer()
+    local sprite = object:getSprite()
+    return fluidContainer ~= nil
+        and math.abs(fluidContainer:getCapacity() - 10) < 0.001
+        and (
+            object:getModData().alembicDistillingStation == true
+            or sprite ~= nil and stationarySprites[sprite:getName()] == true
+        )
+end
+
+--- Возвращает true, если предмет подходит для приёма рассчитанного объёма водки.
+function AlembicDistilling.isValidReceiver(item, vodkaAmount)
+    local container = item and item:getFluidContainer()
+    if not container or container:getFreeCapacity() + 0.0001 < vodkaAmount then
+        return false
+    end
+
+    if container:isEmpty() then
+        return true
+    end
+
+    local primaryFluid = container:getPrimaryFluid()
+    return container:isPureFluid(primaryFluid)
+        and primaryFluid:getFluidTypeString() == "Vodka"
+end
+
+--- Проверяет готовность стационарного куба, топлива и сырья к перегонке.
+function AlembicDistilling.canStartStationaryDistillation(object, character)
+    if not AlembicDistilling.isStationaryDistillery(object)
+            or not object:isLit()
+            or object:getFuelAmount() < minimumStationFuel then
+        return false
+    end
+
+    local container = object:getFluidContainer()
+    return hasMinimumBatchAmount(container)
+        and getAllowedFluid(container) ~= nil
+        and AlembicDistilling.getVodkaAmount(container, character) > 0
+end
+
+--- Выполняет перегонку из стационарного куба в выбранный контейнер.
+function AlembicDistilling.processStationaryDistillation(character, object, receiver)
+    if not character or not AlembicDistilling.canStartStationaryDistillation(object, character) then
+        return false
+    end
+
+    local sourceContainer = object:getFluidContainer()
+    local sourceAmount = sourceContainer:getAmount()
+    local vodkaAmount = AlembicDistilling.getVodkaAmount(sourceContainer, character)
+    if not AlembicDistilling.isValidReceiver(receiver, vodkaAmount) then
+        return false
+    end
+
+    sourceContainer:Empty()
+    receiver:getFluidContainer():addFluid(Fluid.Get("Vodka"), vodkaAmount)
+    object:sync()
+    receiver:syncItemFields()
+    addXp(character, Perks.Cooking, getCookingXp(sourceAmount))
+    return true
+end
+
 --- Проверяет, можно ли перегнать содержимое выбранного нагретого аламбика.
 function RecipeCodeOnTest.alembicDistill(item, character)
     if not item or item:getFullType() ~= alembicType then
@@ -90,9 +177,7 @@ function RecipeCodeOnCreate.alembicDistill(recipeData, character)
     end
 
     local sourceAmount = container:getAmount()
-    local alcoholStrength = sourceFluid:getProperties():getAlcohol()
-    local efficiency = getDistillationEfficiency(character)
-    local vodkaAmount = sourceAmount * alcoholStrength * efficiency / targetAlcohol
+    local vodkaAmount = AlembicDistilling.getVodkaAmount(container, character)
 
     container:Empty()
     container:addFluid(Fluid.Get("Vodka"), vodkaAmount)

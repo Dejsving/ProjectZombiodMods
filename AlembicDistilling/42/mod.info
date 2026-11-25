@@ -1,5 +1,7 @@
 name=Alembic Distilling
 id=AlembicDistilling
-description=Craft a portable copper alembic and distill vanilla alcoholic drinks into 40 percent vodka.
-modversion=0.1.0
+description=Build portable and stationary distillation apparatuses and distill vanilla alcoholic drinks into 40 percent vodka.
+modversion=0.2.0
 versionMin=42.22.2
+pack=alembic_tier3
+tiledef=alembic_tier3 511

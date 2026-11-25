@@ -23,4 +23,29 @@ module AlembicDistilling
             TransferRate = 1.0,
         }
     }
+
+    item Alembic_Stationary_Bucket
+    {
+        DisplayCategory = Furniture,
+        ItemType = base:moveable,
+        Weight = 25.0,
+        Icon = Alembic_Tier3,
+        WorldObjectSprite = alembic_tier3_0,
+        RequiresEquippedBothHands = true,
+        Tags = base:hasmetal;base:heavyitem,
+        component FluidContainer
+        {
+            ContainerName = StationaryDistillationApparatus,
+            Capacity = 10.0,
+            TransferRate = 1.0,
+            InitialPercentMin = 0.0,
+            InitialPercentMax = 0.0,
+        }
+        component CraftBenchSounds
+        {
+            AddFuel = FireplaceAddFuel,
+            LightFire = CampfireLight,
+            Running = CampfireRunning,
+        }
+    }
 }

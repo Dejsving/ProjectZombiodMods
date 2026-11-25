@@ -1,4 +1,7 @@
 {
     "MakeCopperPortableAlembic": "Assemble Portable Distillation Apparatus",
-    "DistillInCopperPortableAlembic": "Distill in Portable Apparatus"
+    "DistillInCopperPortableAlembic": "Distill in Portable Apparatus",
+    "AlembicDistilling.Alembic_Stationary_Bucket": "Build Stationary Bucket Distillery",
+    "Alembic_Stationary_Bucket": "Stationary Bucket Distillery",
+    "MakeStationaryBucketAlembic": "Assemble Stationary Bucket Distillery"
 }

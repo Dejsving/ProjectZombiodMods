@@ -40,4 +40,29 @@ module AlembicDistilling
         {
         }
     }
+
+    craftRecipe MakeStationaryBucketAlembic
+    {
+        timedAction = Making,
+        time = 300,
+        AllowBatchCraft = false,
+        Tags = InHandCraft;Welding;CanBeDoneInDark,
+        category = Welding,
+        SkillRequired = MetalWelding:4,
+        xpAward = MetalWelding:50,
+        Tooltip = Tooltip_AlembicDistilling_StationaryBuild,
+        inputs
+        {
+            item 1 [Base.Bucket;Base.BucketEmpty;Base.BucketForged],
+            item 4 [Base.SmallCopperSheet],
+            item 2 [Base.MetalPipe],
+            item 5 [Base.BlowTorch] flags[DontRecordInput],
+            item 10 [Base.WeldingRods] flags[DontRecordInput],
+            item 1 tags[base:weldingmask] mode:keep,
+        }
+        outputs
+        {
+            item 1 AlembicDistilling.Alembic_Stationary_Bucket,
+        }
+    }
 }

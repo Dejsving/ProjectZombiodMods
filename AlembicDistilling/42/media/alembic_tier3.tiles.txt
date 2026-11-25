@@ -1,0 +1,103 @@
+version = 1
+tileset
+{
+    file = alembic_tier3
+    size = 4,1
+    id = 511
+
+    // alembic_tier3_0 (from e.png)
+    tile
+    {
+        xy = 0,0
+        BlocksPlacement =
+        CanScrap =
+        ContainerCapacity = 15
+        ContainerPosition = Low
+        CustomItem = AlembicDistilling.Alembic_Stationary_Bucket
+        CustomName = AlembicDistillationStation
+        Facing = E
+        GroupName = AlembicDistilling
+        IsMoveAble =
+        IsoType = IsoFireplace
+        Material = MetalPlates
+        Material2 = MetalScrap
+        MaterialType = Metal_Light
+        PickUpTool = Hammer
+        PickUpWeight = 400
+        PlaceTool = Hammer
+        container = woodstove
+        solidtrans =
+    }
+
+    // alembic_tier3_1 (from n.png)
+    tile
+    {
+        xy = 1,0
+        BlocksPlacement =
+        CanScrap =
+        ContainerCapacity = 15
+        ContainerPosition = Low
+        CustomItem = AlembicDistilling.Alembic_Stationary_Bucket
+        CustomName = AlembicDistillationStation
+        Facing = N
+        GroupName = AlembicDistilling
+        IsMoveAble =
+        IsoType = IsoFireplace
+        Material = MetalPlates
+        Material2 = MetalScrap
+        MaterialType = Metal_Light
+        PickUpTool = Hammer
+        PickUpWeight = 400
+        PlaceTool = Hammer
+        container = woodstove
+        solidtrans =
+    }
+
+    // alembic_tier3_2 (from s.png)
+    tile
+    {
+        xy = 2,0
+        BlocksPlacement =
+        CanScrap =
+        ContainerCapacity = 15
+        ContainerPosition = Low
+        CustomItem = AlembicDistilling.Alembic_Stationary_Bucket
+        CustomName = AlembicDistillationStation
+        Facing = S
+        GroupName = AlembicDistilling
+        IsMoveAble =
+        IsoType = IsoFireplace
+        Material = MetalPlates
+        Material2 = MetalScrap
+        MaterialType = Metal_Light
+        PickUpTool = Hammer
+        PickUpWeight = 400
+        PlaceTool = Hammer
+        container = woodstove
+        solidtrans =
+    }
+
+    // alembic_tier3_3 (from w.png)
+    tile
+    {
+        xy = 3,0
+        BlocksPlacement =
+        CanScrap =
+        ContainerCapacity = 15
+        ContainerPosition = Low
+        CustomItem = AlembicDistilling.Alembic_Stationary_Bucket
+        CustomName = AlembicDistillationStation
+        Facing = W
+        GroupName = AlembicDistilling
+        IsMoveAble =
+        IsoType = IsoFireplace
+        Material = MetalPlates
+        Material2 = MetalScrap
+        MaterialType = Metal_Light
+        PickUpTool = Hammer
+        PickUpWeight = 400
+        PlaceTool = Hammer
+        container = woodstove
+        solidtrans =
+    }
+}

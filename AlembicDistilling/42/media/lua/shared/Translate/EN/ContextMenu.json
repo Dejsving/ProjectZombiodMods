@@ -1,0 +1,12 @@
+{
+    "ContextMenu_AlembicDistilling_Debug": "Alembic Distilling (debug)",
+    "ContextMenu_AlembicDistilling_Debug_TestKit": "Give Test Kit",
+    "ContextMenu_AlembicDistilling_Debug_Firewood": "Give Firewood x10",
+    "ContextMenu_AlembicDistilling_Debug_Lighter": "Give Lighter x1",
+    "ContextMenu_AlembicDistilling_Debug_Splinters": "Give Splinters x1",
+    "ContextMenu_AlembicDistilling_Debug_PortableKit": "Give Portable Apparatus Crafting Kit",
+    "ContextMenu_AlembicDistilling_Debug_StationaryKit": "Give Stationary Apparatus Crafting Kit",
+    "ContextMenu_AlembicDistilling_Debug_Hammer": "Give Hammer x1",
+    "ContextMenu_AlembicDistilling_Debug_Buckets": "Give Bucket (Empty) x3",
+    "ContextMenu_AlembicDistilling_Liquid": "Liquid"
+}
